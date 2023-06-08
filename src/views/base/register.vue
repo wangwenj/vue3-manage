@@ -1,7 +1,7 @@
 <template>
   <div class="login">
-    <h2>登录</h2>
-    <form @submit.prevent="handleLogin">
+    <h2>注册</h2>
+    <form>
       <div class="input-group">
         <label for="username">Username</label>
         <input type="text" id="username" v-model="username" />
@@ -10,14 +10,13 @@
         <label for="password">Password</label>
         <input type="password" id="password" v-model="password" />
       </div>
-      <button type="submit" class="submit-button">Login</button>
     </form>
-    <el-link :underline="false" class="register" @click="goRouter('/register')">去注册</el-link>
+    <button type="submit" class="submit-button" @click="handleRegister">注册</button>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store'
 
@@ -25,28 +24,30 @@ export default {
   setup() {
     const userStore = useUserStore()
     const router = useRouter()
-    const username = ref('tangyusen')
-    const password = ref('202250915129')
+    const username = ref('')
+    const password = ref('')
+    const errorMessage = ref('')
 
-    const handleLogin = async () => {
-      const user = userStore.findUser(username.value, password.value)
-      if (user) {
-        await userStore.login({ a: 12 })
-        router.push('/')
+    const handleRegister = async () => {
+      console.log(userStore.users)
+      // 检查该用户名是否已经存在
+      if (userStore.users.some(user => user.username === username.value)) {
+        alert('这个用户名已经被注册了')
       } else {
-        alert('用户名或密码错误')
+        // 向 store 添加新用户
+        await userStore.register({
+          username: username.value,
+          password: password.value
+        })
+        router.push('/login')
       }
-    }
-
-    const goRouter = path => {
-      router.push(path)
     }
 
     return {
       username,
       password,
-      handleLogin,
-      goRouter
+      errorMessage,
+      handleRegister
     }
   }
 }

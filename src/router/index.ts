@@ -10,7 +10,7 @@ const router = createRouter({
   routes: constantRoutes as RouteRecordRaw[],
   scrollBehavior: () => ({ top: 0, left: 0 })
 })
-const whiteRoutes = ['login', 'forget-password']
+const whiteRoutes = ['login', 'register']
 router.beforeEach(async to => {
   if (whiteRoutes.includes(to.name as string)) {
     return true
@@ -30,8 +30,8 @@ router.beforeEach(async to => {
     return '/login'
   }
 })
-router.afterEach(() => {
-  console.log('afterEach')
-})
+// router.afterEach(() => {
+//   console.log('afterEach')
+// })
 
 export default router

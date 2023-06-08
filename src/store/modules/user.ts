@@ -5,6 +5,12 @@ import { usePermissionStore } from './permission'
 
 export const useUserStore = defineStore('user-store', {
   state: () => ({
+    users: [
+      {
+        username: 'tangyusen',
+        password: '202250915129'
+      }
+    ],
     userInfo: {},
     token: getToken()
   }),
@@ -21,6 +27,15 @@ export const useUserStore = defineStore('user-store', {
       this.token = res.data.token
       setToken(res.data.token)
     },
+    async register(data: any) {
+      if (data) {
+        this.users.push({
+          username: data.username,
+          password: data.password
+        })
+      }
+      return '/login'
+    },
     async logout(isSelfLogout = false) {
       if (isSelfLogout) {
         await logoutApi()
@@ -30,6 +45,9 @@ export const useUserStore = defineStore('user-store', {
       const permissionStore = usePermissionStore()
       permissionStore.$reset()
       return '/login'
+    },
+    findUser(username, password) {
+      return this.users.find(user => user.username === username && user.password === password)
     }
   }
 })

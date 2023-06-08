@@ -17,11 +17,11 @@ const constantRoutes: Router.IRoute[] = [
     }
   },
   {
-    name: 'forget-password',
-    path: '/forget-password',
-    component: () => import('@/views/base/forget-password.vue'),
+    name: 'register',
+    path: '/register',
+    component: () => import('@/views/base/register.vue'),
     meta: {
-      title: '忘记密码',
+      title: '注册',
       hide: true
     }
   },
