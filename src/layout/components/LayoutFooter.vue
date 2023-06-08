@@ -1,5 +1,5 @@
 <template>
-  <footer v-show="footerShow" class="layout-footer" :style="footerStyle">footer</footer>
+  <footer v-show="footerShow" class="layout-footer" :style="footerStyle">版权归属：唐玉森：202250915129</footer>
 </template>
 <script setup lang="ts">
 import { useLayoutStore } from '@/store'

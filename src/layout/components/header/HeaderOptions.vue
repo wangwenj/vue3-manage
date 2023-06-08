@@ -1,12 +1,10 @@
 <template>
   <div class="header-operations">
     <el-dropdown class="ml-12">
+      唐玉森：202250915129
       <el-avatar class="cursor-pointer" :size="32" :src="circleUrl" />
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item>Action 1</el-dropdown-item>
-          <el-dropdown-item>Action 2</el-dropdown-item>
-          <el-dropdown-item>Action 3</el-dropdown-item>
           <el-dropdown-item divided @click="logout()">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </template>
