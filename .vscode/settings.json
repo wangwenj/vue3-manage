@@ -46,7 +46,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "bracket-pair-colorizer-2.depreciation-notice": false,
-  "timeline.excludeSources": ["timeline.localHistory"],
   "[markdown]": {
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true
